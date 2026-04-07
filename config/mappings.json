@@ -1,0 +1,67 @@
+{
+  "taskCategories": {
+    "creative_writing": {
+      "keywords": ["写", "创作", "小说", "故事", "诗歌", "剧本", "文章", "文学", "作家", "写一部", "写一个", "科幻", "短篇", "长篇"],
+      "skills": ["clawrouter/writer", "openclaw/storyteller", "creative-writer"],
+      "tools": ["feishu_create_doc", "write"],
+      "description": "创作类任务：小说、故事、文章等"
+    },
+    "weather_query": {
+      "keywords": ["天气", "气温", "预报", "下雨", "晴天", "多云", "刮风", "温度", "几度", "冷", "热"],
+      "skills": ["weather"],
+      "tools": ["exec:curl wttr.in"],
+      "description": "天气查询任务"
+    },
+    "news_search": {
+      "keywords": ["新闻", "时事", "热搜", "头条", "资讯", "动态", "最新消息"],
+      "skills": ["news-fetcher", "web-search"],
+      "tools": ["exec:curl"],
+      "description": "新闻资讯查询"
+    },
+    "data_analysis": {
+      "keywords": ["分析", "数据", "图表", "统计", "报表", "可视化", "趋势", "销售", "增长"],
+      "skills": ["data-analyzer", "chart-generator"],
+      "tools": ["feishu_sheet", "feishu_bitable"],
+      "description": "数据分析与图表生成"
+    },
+    "file_operation": {
+      "keywords": ["文件", "复制", "移动", "删除", "整理", "文件夹", "目录", "保存"],
+      "skills": ["file-manager"],
+      "tools": ["exec", "read", "write"],
+      "description": "文件操作任务"
+    },
+    "code_generation": {
+      "keywords": ["代码", "编程", "开发", "脚本", "函数", "python", "java", "js", "html", "css", "程序", "算法"],
+      "skills": ["code-generator", "dev-helper"],
+      "tools": ["exec", "write"],
+      "description": "代码生成与开发"
+    },
+    "image_generation": {
+      "keywords": ["图片", "图像", "画图", "生成图片", "绘图", "照片", "图", "画一", "制作图片", "生成", "日出", "风景", "人像", "卡通", "漫画"],
+      "skills": ["imagegen"],
+      "tools": ["imagegen"],
+      "description": "图片生成任务"
+    },
+    "task_management": {
+      "keywords": ["任务", "待办", "提醒", "日程", "计划", "会议", "约会", "安排", "时间", "预约"],
+      "skills": ["feishu-task"],
+      "tools": ["feishu_task_task", "feishu_calendar_event"],
+      "description": "任务与日程管理"
+    },
+    "document_operation": {
+      "keywords": ["文档", "飞书", "云文档", "doc", "文档记录", "会议纪要", "创建文档", "编辑文档"],
+      "skills": ["feishu-doc", "feishu-create-doc", "feishu-update-doc"],
+      "tools": ["feishu_create_doc", "feishu_update_doc", "feishu_fetch_doc"],
+      "description": "飞书文档操作"
+    },
+    "web_search": {
+      "keywords": ["搜索", "查找", "查询", "google", "百度", "搜一下", "查一下", "最新", "新闻"],
+      "skills": ["web-searcher"],
+      "tools": ["exec:curl"],
+      "description": "网络搜索任务"
+    }
+  },
+  "defaultSkills": ["clawrouter", "exec", "read", "write"],
+  "skillSources": ["clawhub", "github"],
+  "confidenceThreshold": 0.4
+}
