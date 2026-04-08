@@ -1,0 +1,157 @@
+{
+  "taskCategories": {
+    "creative_writing_poetry": {
+      "keywords": ["写诗", "诗歌", "古诗", "现代诗", "诗词", "作诗", "吟诗", "赋诗", "诗歌创作"],
+      "skills": ["poetry-structure", "rhyme-generator", "imagery-builder"],
+      "tools": ["feishu_create_doc", "write"],
+      "subtasks": ["theme", "structure", "draft", "polish"],
+      "description": "诗歌创作",
+      "phase": "主题确定→格律构建→初稿创作→润色完善",
+      "qualityGates": ["格律正确", "意境优美", "押韵准确"]
+    },
+    "creative_writing_script": {
+      "keywords": ["剧本", "脚本", "话剧", "电影剧本", "电视剧本", "小品", "相声", "剧本创作", "写剧本"],
+      "skills": ["script-structure", "dialogue-writer", "scene-builder"],
+      "tools": ["feishu_create_doc", "write"],
+      "subtasks": ["outline", "character", "scenes", "dialogue", "review"],
+      "description": "剧本创作",
+      "phase": "大纲→人物→分场→对话→审阅",
+      "qualityGates": ["结构完整", "对话生动", "冲突合理"]
+    },
+    "world_building": {
+      "keywords": ["世界观", "构建世界", "设定世界", "世界背景", "架空世界", "奇幻世界", "科幻世界"],
+      "skills": ["world-builder", "lore-creator", "culture-designer"],
+      "tools": ["feishu_create_doc", "feishu_bitable"],
+      "subtasks": ["geography", "history", "culture", "politics", "economy"],
+      "description": "世界观构建",
+      "phase": "地理→历史→文化→政治→经济",
+      "qualityGates": ["设定自洽", "细节丰富", "逻辑合理"]
+    },
+    "plot_development": {
+      "keywords": ["情节", "剧情", "故事线", "情节发展", "剧情设计", "故事构思"],
+      "skills": ["plot-designer", "conflict-creator", "pacing-controller"],
+      "tools": ["feishu_create_doc", "feishu_sheet"],
+      "subtasks": ["conflict", "climax", "resolution"],
+      "description": "情节设计",
+      "phase": "冲突设置→高潮设计→结局安排",
+      "qualityGates": ["节奏紧凑", "冲突合理", "高潮精彩"]
+    },
+    "dialogue_creation": {
+      "keywords": ["对话", "台词", "人物对话", "编写对话", "台词设计"],
+      "skills": ["dialogue-writer", "voice-differentiator", "subtext-creator"],
+      "tools": ["feishu_create_doc", "write"],
+      "subtasks": ["character_voice", "conflict", "subtext"],
+      "description": "对话创作",
+      "phase": "人物声音→冲突对话→潜台词",
+      "qualityGates": ["符合人物", "推动情节", "生动自然"]
+    },
+    "chapter_writing": {
+      "keywords": ["章节", "写章节", "章节撰写", "分章", "章回"],
+      "skills": ["chapter-structure", "pacing-control", "cliffhanger"],
+      "tools": ["feishu_create_doc", "write"],
+      "subtasks": ["opening", "development", "climax", "ending"],
+      "description": "章节撰写",
+      "phase": "开篇→发展→高潮→结尾",
+      "qualityGates": ["结构完整", "节奏适宜", "有吸引力"]
+    },
+    "formatting": {
+      "keywords": ["格式", "排版", "格式化", "整理格式", "调整格式"],
+      "skills": ["formatter", "layout-designer"],
+      "tools": ["feishu_update_doc", "write"],
+      "subtasks": ["structure", "style", "consistency"],
+      "description": "格式整理",
+      "phase": "结构→样式→一致性检查",
+      "qualityGates": ["格式规范", "美观统一"]
+    },
+    "final_review": {
+      "keywords": ["终稿", "最终审阅", "最后检查", "终审", "完稿"],
+      "skills": ["final-reviewer", "quality-checker"],
+      "tools": ["read", "feishu_doc_comments"],
+      "subtasks": ["completeness", "consistency", "quality"],
+      "description": "最终审阅",
+      "phase": "完整性→一致性→质量",
+      "qualityGates": ["无遗漏", "高质量"]
+    },
+    "export_publish": {
+      "keywords": ["导出", "发布", "提交", "输出", "发表"],
+      "skills": ["exporter", "publisher"],
+      "tools": ["feishu_update_doc", "exec"],
+      "subtasks": ["format", "export", "publish"],
+      "description": "导出发布",
+      "phase": "格式化→导出→发布",
+      "qualityGates": ["格式正确", "发布成功"]
+    },
+    "topic_analysis": {
+      "keywords": ["主题分析", "选题", "确定主题", "话题分析"],
+      "skills": ["topic-analyzer", "angle-finder"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["understand", "explore", "define"],
+      "description": "主题分析",
+      "phase": "理解→探索→定义",
+      "qualityGates": ["主题明确", "角度新颖"]
+    },
+    "draft_writing": {
+      "keywords": ["初稿", "草稿", "写初稿", "起草"],
+      "skills": ["drafter", "content-generator"],
+      "tools": ["feishu_create_doc", "write"],
+      "subtasks": ["outline", "write", "review"],
+      "description": "初稿撰写",
+      "phase": "大纲→撰写→审阅",
+      "qualityGates": ["内容完整", "逻辑清晰"]
+    },
+    "editing": {
+      "keywords": ["编辑", "编辑修改", "文稿编辑", "修订"],
+      "skills": ["editor", "structure-improver"],
+      "tools": ["feishu_update_doc", "read"],
+      "subtasks": ["structure", "content", "style"],
+      "description": "编辑修订",
+      "phase": "结构→内容→风格",
+      "qualityGates": ["结构优化", "内容准确"]
+    },
+    "proofreading": {
+      "keywords": ["校对", "校稿", "校对错别字", "文字校对"],
+      "skills": ["proofreader", "typo-finder"],
+      "tools": ["read", "feishu_update_doc"],
+      "subtasks": ["spelling", "grammar", "punctuation"],
+      "description": "校对",
+      "phase": "拼写→语法→标点",
+      "qualityGates": ["无错别字", "语法正确", "标点规范"]
+    },
+    "tone_adjustment": {
+      "keywords": ["语气", "语调", "语气调整", "文风调整"],
+      "skills": ["tone-adjuster", "style-modifier"],
+      "tools": ["feishu_update_doc", "read"],
+      "subtasks": ["analyze", "adjust", "verify"],
+      "description": "语气调整",
+      "phase": "分析→调整→验证",
+      "qualityGates": ["语气一致", "风格统一"]
+    },
+    "seo_optimization": {
+      "keywords": ["SEO", "搜索引擎优化", "关键词优化", "SEO 优化"],
+      "skills": ["seo-optimizer", "keyword-strategist"],
+      "tools": ["feishu_update_doc", "exec"],
+      "subtasks": ["keyword_research", "optimize", "verify"],
+      "description": "SEO 优化",
+      "phase": "关键词研究→优化→验证",
+      "qualityGates": ["关键词覆盖", "可读性好"]
+    },
+    "hook_writing": {
+      "keywords": ["开头", "钩子", "吸引读者", "引人入胜"],
+      "skills": ["hook-writer", "attention-grabber"],
+      "tools": ["feishu_create_doc", "write"],
+      "subtasks": ["analyze_audience", "create_hook", "test"],
+      "description": "开头写作",
+      "phase": "分析受众→创作钩子→测试",
+      "qualityGates": ["吸引力强", "引入自然"]
+    },
+    "content_outline": {
+      "keywords": ["内容大纲", "文章大纲", "提纲", "内容框架"],
+      "skills": ["outliner", "structure-builder"],
+      "tools": ["feishu_create_doc", "feishu_sheet"],
+      "subtasks": ["main_points", "subpoints", "flow"],
+      "description": "内容大纲",
+      "phase": "要点→子要点→流程",
+      "qualityGates": ["结构清晰", "逻辑连贯"]
+    }
+  }
+}

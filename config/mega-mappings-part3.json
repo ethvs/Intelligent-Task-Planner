@@ -1,0 +1,148 @@
+{
+  "taskCategories": {
+    "fitness_plan": {
+      "keywords": ["健身", "健身计划", "锻炼", "训练计划", "减肥", "增肌", "塑形", "运动计划"],
+      "skills": ["fitness-planner", "workout-designer", "nutrition-advisor"],
+      "tools": ["feishu_create_doc", "feishu_sheet"],
+      "subtasks": ["assess_level", "set_goals", "plan_workout", "nutrition_plan"],
+      "description": "健身计划",
+      "phase": "水平评估→目标设定→训练计划→饮食计划",
+      "qualityGates": ["目标明确", "计划可行", "营养均衡"]
+    },
+    "diet_plan": {
+      "keywords": ["饮食", "饮食计划", "食谱", "营养餐", "减肥餐", "健康饮食"],
+      "skills": ["nutritionist", "meal-planner"],
+      "tools": ["feishu_create_doc", "feishu_sheet"],
+      "subtasks": ["assess_needs", "plan_meals", "shopping_list"],
+      "description": "饮食计划",
+      "phase": "需求评估→餐单规划→购物清单",
+      "qualityGates": ["营养均衡", "热量适宜", "易操作"]
+    },
+    "gift_recommendation": {
+      "keywords": ["礼品", "礼物", "送礼", "礼物推荐", "送什么"],
+      "skills": ["gift-advisor", "preference-analyzer"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["understand_recipient", "budget", "interests", "suggest"],
+      "description": "礼品推荐",
+      "phase": "了解对象→预算→兴趣→建议",
+      "qualityGates": ["贴心", "实用", "符合预算"]
+    },
+    "home_organization": {
+      "keywords": ["整理", "收纳", "家居整理", "房间整理", "断舍离"],
+      "skills": ["organizer", "declutter-expert"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["assess_space", "categorize", "organize", "maintain"],
+      "description": "家居整理",
+      "phase": "评估空间→分类→整理→维护",
+      "qualityGates": ["整洁", "有序", "易维护"]
+    },
+    "pet_care": {
+      "keywords": ["宠物", "养宠", "宠物护理", "养狗", "养猫", "宠物健康"],
+      "skills": ["pet-care-advisor", "animal-health"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["basic_care", "health", "training", "nutrition"],
+      "description": "宠物护理",
+      "phase": "基础护理→健康→训练→营养",
+      "qualityGates": ["科学", "全面", "可操作"]
+    },
+    "plant_care": {
+      "keywords": ["植物", "养花", "园艺", "绿植", "植物养护", "种花"],
+      "skills": ["plant-doctor", "gardening-expert"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["identify", "care_schedule", "problem_solve"],
+      "description": "植物养护",
+      "phase": "识别→养护计划→问题解决",
+      "qualityGates": ["识别准确", "方法正确"]
+    },
+    "daily_reminder": {
+      "keywords": ["提醒", "日常提醒", "待办", "备忘录", "记事"],
+      "skills": ["reminder-setter", "task-manager"],
+      "tools": ["feishu_task_task", "feishu_calendar_event"],
+      "subtasks": ["capture", "categorize", "schedule", "remind"],
+      "description": "日常提醒",
+      "phase": "记录→分类→安排→提醒",
+      "qualityGates": ["及时", "准确", "不遗漏"]
+    },
+    "habit_tracker": {
+      "keywords": ["习惯", "习惯追踪", "打卡", "习惯养成", "坚持"],
+      "skills": ["habit-coach", "progress-tracker"],
+      "tools": ["feishu_task_task", "feishu_bitable"],
+      "subtasks": ["define_habit", "track", "review", "adjust"],
+      "description": "习惯追踪",
+      "phase": "定义→追踪→回顾→调整",
+      "qualityGates": ["目标清晰", "追踪持续", "有反馈"]
+    },
+    "reading_plan": {
+      "keywords": ["阅读", "读书", "阅读计划", "书单", "读书计划"],
+      "skills": ["reading-planner", "book-curator"],
+      "tools": ["feishu_create_doc", "feishu_sheet"],
+      "subtasks": ["assess_interest", "select_books", "schedule", "track"],
+      "description": "阅读计划",
+      "phase": "兴趣评估→选书→计划→追踪",
+      "qualityGates": ["兴趣匹配", "计划可行"]
+    },
+    "skill_learning": {
+      "keywords": ["技能", "学技能", "技能学习", "学习新技能"],
+      "skills": ["skill-mapper", "learning-path-designer"],
+      "tools": ["feishu_create_doc", "feishu_task_task"],
+      "subtasks": ["define_skill", "resources", "practice_plan", "review"],
+      "description": "技能学习",
+      "phase": "定义技能→资源→练习计划→回顾",
+      "qualityGates": ["目标明确", "路径清晰", "可实践"]
+    },
+    "course_selection": {
+      "keywords": ["选课", "课程选择", "选什么课", "课程推荐"],
+      "skills": ["course-advisor", "curriculum-analyzer"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["understand_goals", "analyze_options", "recommend"],
+      "description": "选课建议",
+      "phase": "了解目标→分析选项→建议",
+      "qualityGates": ["匹配目标", "切实可行"]
+    },
+    "study_technique": {
+      "keywords": ["学习技巧", "学习方法", "高效学习", "记忆方法"],
+      "skills": ["study-coach", "technique-advisor"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["assess_style", "suggest_techniques", "practice_plan"],
+      "description": "学习技巧",
+      "phase": "评估风格→建议技巧→练习计划",
+      "qualityGates": ["方法科学", "适合个人"]
+    },
+    "knowledge_mapping": {
+      "keywords": ["知识图谱", "知识地图", "知识梳理", "知识体系"],
+      "skills": ["knowledge-mapper", "structure-builder"],
+      "tools": ["feishu_create_doc", "feishu_sheet"],
+      "subtasks": ["define_domain", "identify_concepts", "link", "visualize"],
+      "description": "知识图谱",
+      "phase": "定义领域→识别概念→关联→可视化",
+      "qualityGates": ["结构清晰", "关联合理", "可视化好"]
+    },
+    "research_method": {
+      "keywords": ["研究方法", "调研方法", "研究设计"],
+      "skills": ["research-methodologist", "design-expert"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["define_question", "choose_method", "design", "execute"],
+      "description": "研究方法",
+      "phase": "定义问题→选择方法→设计→执行",
+      "qualityGates": ["方法适当", "设计严谨"]
+    },
+    "thesis_writing": {
+      "keywords": ["论文写作", "写论文", "毕业论文", "学术论文写作"],
+      "skills": ["thesis-writer", "academic-structure"],
+      "tools": ["feishu_create_doc", "feishu_sheet"],
+      "subtasks": ["topic", "outline", "research", "write", "revise"],
+      "description": "论文写作",
+      "phase": "选题→大纲→研究→写作→修改",
+      "qualityGates": ["结构规范", "论证充分", "格式正确"]
+    },
+    "citation_help": {
+      "keywords": ["引用", "参考文献", "引用格式", "citation"],
+      "skills": ["citation-helper", "reference-formatter"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["identify_type", "format", "verify"],
+      "description": "引用帮助",
+      "phase": "识别类型→格式化→验证",
+      "qualityGates": ["格式正确", "信息完整"]
+    }
+  }
+}

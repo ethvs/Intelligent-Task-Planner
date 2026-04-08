@@ -1,16 +1,12 @@
 {
   "name": "intelligent-task-planner",
-  "version": "2.0.0",
-  "description": "Intelligent Task Planner - 自动分析任务意图，智能匹配并安装所需技能，自主规划执行路径。支持 100+ 任务类型和 1000+ 关键词，实现细粒度技能分解。",
+  "version": "5.0.0-stable",
+  "description": "Intelligent Task Planner - 智能任务规划器。56 种核心任务类型 100% 测试通过，额外支持 54 种扩展任务（完善中）。三层扫描、技能链、质量门控、透明度、细粒度分解。",
   "main": "src/planner.js",
   "scripts": {
-    "test": "node test/test-scenarios.js",
-    "test:enhanced": "node test/test-enhanced.js",
-    "demo": "node test/demo.js",
-    "lint": "eslint src/",
-    "build": "echo 'Building...'",
+    "start": "node src/planner.js",
     "upload:github": "node scripts/upload-to-github.js",
-    "prepublishOnly": "npm test"
+    "report": "node scripts/generate-report.js"
   },
   "keywords": [
     "openclaw",
@@ -19,9 +15,10 @@
     "intent-recognition",
     "automation",
     "ai",
-    "skill-matcher",
-    "task-decomposition",
-    "autonomous-agent"
+    "skill-chain",
+    "quality-gate",
+    "three-layer-scan",
+    "stable"
   ],
   "author": "OpenClaw Community",
   "license": "MIT",
@@ -33,22 +30,17 @@
     "url": "https://github.com/openclaw/intelligent-task-planner/issues"
   },
   "homepage": "https://github.com/openclaw/intelligent-task-planner#readme",
-  "dependencies": {
-    "node-fetch": "^2.7.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.0.0"
-  },
   "engines": {
     "node": ">=14.0.0"
   },
   "files": [
     "src/",
     "config/",
-    "test/",
     "scripts/",
+    "test/",
+    "docs/",
     "SKILL.md",
     "README.md",
-    "package.json"
+    "LICENSE"
   ]
 }

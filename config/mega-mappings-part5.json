@@ -1,0 +1,310 @@
+{
+  "taskCategories": {
+    "logo_design": {
+      "keywords": ["logo", "标志设计", "商标设计", "品牌标识"],
+      "skills": ["logo-designer", "brand-visualizer"],
+      "tools": ["imagegen", "feishu_create_doc"],
+      "subtasks": ["understand_brand", "concept", "design", "refine"],
+      "description": "Logo 设计",
+      "phase": "理解品牌→构思→设计→完善",
+      "qualityGates": ["识别度高", "简洁", "符合品牌"]
+    },
+    "poster_design": {
+      "keywords": ["海报", "海报设计", "宣传海报", "活动海报"],
+      "skills": ["poster-designer", "visual-communicator"],
+      "tools": ["imagegen", "feishu_create_doc"],
+      "subtasks": ["understand_purpose", "layout", "design", "finalize"],
+      "description": "海报设计",
+      "phase": "理解目的→排版→设计→定稿",
+      "qualityGates": ["信息清晰", "视觉冲击", "主题突出"]
+    },
+    "infographic_creation": {
+      "keywords": ["信息图", "信息图表", "数据图", "可视化图表"],
+      "skills": ["infographic-designer", "data-visualizer"],
+      "tools": ["feishu_sheet", "imagegen"],
+      "subtasks": ["extract_data", "choose_format", "design", "refine"],
+      "description": "信息图设计",
+      "phase": "提取数据→选择格式→设计→完善",
+      "qualityGates": ["信息准确", "视觉清晰", "易于理解"]
+    },
+    "brand_naming": {
+      "keywords": ["起名", "取名", "品牌名", "公司名", "产品名"],
+      "skills": ["name-generator", "cultural-checker"],
+      "tools": ["feishu_create_doc", "exec"],
+      "subtasks": ["understand_brand", "generate", "check", "select"],
+      "description": "品牌起名",
+      "phase": "理解品牌→生成→检查→选择",
+      "qualityGates": ["易记", "有意义", "无冲突"]
+    },
+    "color_scheme": {
+      "keywords": ["配色", "配色方案", "色彩搭配", "颜色方案"],
+      "skills": ["color-theorist", "harmony-expert"],
+      "tools": ["feishu_create_doc", "imagegen"],
+      "subtasks": ["understand_mood", "choose_palette", "test", "finalize"],
+      "description": "配色方案",
+      "phase": "理解情绪→选择色板→测试→定稿",
+      "qualityGates": ["和谐", "符合主题", "实用"]
+    },
+    "layout_design": {
+      "keywords": ["版式", "版式设计", "排版", "布局设计"],
+      "skills": ["layout-designer", "composition-expert"],
+      "tools": ["feishu_create_doc", "imagegen"],
+      "subtasks": ["understand_content", "grid", "arrange", "refine"],
+      "description": "版式设计",
+      "phase": "理解内容→网格→排列→完善",
+      "qualityGates": ["层次清晰", "阅读流畅", "美观"]
+    },
+    "podcast_production": {
+      "keywords": ["播客", "播客制作", "音频节目", "播客录制"],
+      "skills": ["podcast-producer", "audio-editor"],
+      "tools": ["exec", "audio_processing"],
+      "subtasks": ["plan_episode", "record", "edit", "publish"],
+      "description": "播客制作",
+      "phase": "策划→录制→编辑→发布",
+      "qualityGates": ["内容优质", "音质清晰", "节奏好"]
+    },
+    "subtitle_creation": {
+      "keywords": ["字幕", "加字幕", "字幕制作", "字幕生成"],
+      "skills": ["subtitle-generator", "transcriber"],
+      "tools": ["exec", "video-frames"],
+      "subtasks": ["transcribe", "time", "sync", "export"],
+      "description": "字幕制作",
+      "phase": "听写→时间轴→同步→导出",
+      "qualityGates": ["准确", "同步", "格式正确"]
+    },
+    "vlog_planning": {
+      "keywords": ["Vlog", "视频日志", "日常视频", "vlog 策划"],
+      "skills": ["vlog-planner", "storyteller"],
+      "tools": ["feishu_create_doc", "video_editing"],
+      "subtasks": ["theme", "shot_list", "shoot", "edit"],
+      "description": "Vlog 策划",
+      "phase": "主题→拍摄清单→拍摄→剪辑",
+      "qualityGates": ["主题明确", "内容丰富", "有吸引力"]
+    },
+    "social_media_content": {
+      "keywords": ["社交媒体", "内容创作", "推文", "朋友圈", "微博"],
+      "skills": ["content-creator", "engagement-expert"],
+      "tools": ["feishu_create_doc", "write"],
+      "subtasks": ["understand_platform", "create", "optimize", "schedule"],
+      "description": "社交媒体内容",
+      "phase": "理解平台→创作→优化→发布",
+      "qualityGates": ["符合平台", "有吸引力", "易传播"]
+    },
+    "live_streaming_plan": {
+      "keywords": ["直播", "直播策划", "直播计划", "带货直播"],
+      "skills": ["live-stream-planner", "engagement-designer"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["theme", "script", "interaction", "review"],
+      "description": "直播策划",
+      "phase": "主题→脚本→互动→回顾",
+      "qualityGates": ["流程清晰", "互动性强", "目标达成"]
+    },
+    "media_strategy": {
+      "keywords": ["媒体策略", "媒体计划", "传播策略"],
+      "skills": ["media-strategist", "channel-optimizer"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["understand_audience", "choose_channels", "plan", "measure"],
+      "description": "媒体策略",
+      "phase": "理解受众→选择渠道→计划→衡量",
+      "qualityGates": ["渠道匹配", "资源优化", "效果可衡量"]
+    },
+    "contract_review": {
+      "keywords": ["合同", "合同审查", "审合同", "合同审核"],
+      "skills": ["contract-reviewer", "risk-identifier"],
+      "tools": ["read", "feishu_doc_comments"],
+      "subtasks": ["read_terms", "identify_risks", "suggest_changes", "negotiate"],
+      "description": "合同审查",
+      "phase": "阅读条款→识别风险→建议修改→协商",
+      "qualityGates": ["风险识别", "条款公平", "合法合规"]
+    },
+    "patent_application": {
+      "keywords": ["专利", "专利申请", "申请专利"],
+      "skills": ["patent-writer", "prior-art-searcher"],
+      "tools": ["feishu_create_doc", "exec"],
+      "subtasks": ["search_prior", "draft_claims", "file", "follow_up"],
+      "description": "专利申请",
+      "phase": "检索现有技术→撰写权利要求→提交→跟进",
+      "qualityGates": ["新颖性", "创造性", "权利要求清晰"]
+    },
+    "trademark_registration": {
+      "keywords": ["商标", "商标注册", "注册商标"],
+      "skills": ["trademark-registrar", "conflict-checker"],
+      "tools": ["feishu_create_doc", "exec"],
+      "subtasks": ["search_conflicts", "prepare_application", "file", "monitor"],
+      "description": "商标注册",
+      "phase": "检索冲突→准备申请→提交→监控",
+      "qualityGates": ["无冲突", "分类正确", "材料完整"]
+    },
+    "visa_application": {
+      "keywords": ["签证", "签证申请", "办签证"],
+      "skills": ["visa-advisor", "document-checker"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["check_requirements", "prepare_documents", "apply", "track"],
+      "description": "签证申请",
+      "phase": "查看要求→准备材料→申请→追踪",
+      "qualityGates": ["材料齐全", "信息准确", "及时提交"]
+    },
+    "immigration_consult": {
+      "keywords": ["移民", "移民咨询", "移民规划"],
+      "skills": ["immigration-advisor", "pathway-analyzer"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["assess_eligibility", "compare_pathways", "plan", "execute"],
+      "description": "移民咨询",
+      "phase": "评估资格→比较途径→规划→执行",
+      "qualityGates": ["途径适合", "条件满足", "风险可控"]
+    },
+    "psychological_counseling": {
+      "keywords": ["心理", "心理咨询", "心理疏导", "情绪问题"],
+      "skills": ["counseling-simulator", "active-listener"],
+      "tools": ["read", "feishu_create_doc"],
+      "subtasks": ["listen", "empathize", "explore", "suggest"],
+      "description": "心理咨询",
+      "phase": "倾听→共情→探索→建议",
+      "qualityGates": ["非评判", "支持性", "引导自我发现"]
+    },
+    "mediation_service": {
+      "keywords": ["调解", "调解服务", "纠纷调解"],
+      "skills": ["mediator", "conflict-resolver"],
+      "tools": ["read", "feishu_create_doc"],
+      "subtasks": ["understand_parties", "identify_issues", "facilitate", "agreement"],
+      "description": "调解服务",
+      "phase": "理解各方→识别问题→促进→协议",
+      "qualityGates": ["公正", "促进理解", "达成共识"]
+    },
+    "notary_service": {
+      "keywords": ["公证", "公证服务", "办理公证"],
+      "skills": ["notary-guide", "document-verifier"],
+      "tools": ["read", "feishu_create_doc"],
+      "subtasks": ["verify_identity", "witness", "certify", "record"],
+      "description": "公证服务",
+      "phase": "验证身份→见证→认证→记录",
+      "qualityGates": ["身份真实", "程序合法", "记录完整"]
+    },
+    "experiment_design": {
+      "keywords": ["实验", "实验设计", "设计实验"],
+      "skills": ["experiment-designer", "control-expert"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["hypothesis", "variables", "procedure", "analyze"],
+      "description": "实验设计",
+      "phase": "假设→变量→程序→分析",
+      "qualityGates": ["假设清晰", "变量控制", "可重复"]
+    },
+    "statistical_analysis": {
+      "keywords": ["统计", "统计分析", "统计学", "数据统计分析"],
+      "skills": ["statistician", "data-interpreter"],
+      "tools": ["feishu_sheet", "exec"],
+      "subtasks": ["choose_test", "run_analysis", "interpret", "report"],
+      "description": "统计分析",
+      "phase": "选择检验→运行分析→解释→报告",
+      "qualityGates": ["方法适当", "结果准确", "解释合理"]
+    },
+    "paper_submission": {
+      "keywords": ["投稿", "论文投稿", "发表", "期刊投稿"],
+      "skills": ["submission-advisor", "journal-finder"],
+      "tools": ["feishu_create_doc", "exec"],
+      "subtasks": ["select_journal", "format", "submit", "respond"],
+      "description": "论文投稿",
+      "phase": "选择期刊→格式化→提交→回复",
+      "qualityGates": ["期刊匹配", "格式规范", "回复及时"]
+    },
+    "peer_review": {
+      "keywords": ["同行评审", "审稿", "评审意见"],
+      "skills": ["peer-reviewer", "constructive-critic"],
+      "tools": ["read", "feishu_doc_comments"],
+      "subtasks": ["understand", "evaluate", "comment", "recommend"],
+      "description": "同行评审",
+      "phase": "理解→评估→评论→建议",
+      "qualityGates": ["公正", "建设性", "专业"]
+    },
+    "academic_ethics": {
+      "keywords": ["学术伦理", "学术道德", "学术规范"],
+      "skills": ["ethics-advisor", "compliance-checker"],
+      "tools": ["read", "feishu_create_doc"],
+      "subtasks": ["identify_issues", "check_guidelines", "advise", "prevent"],
+      "description": "学术伦理",
+      "phase": "识别问题→查看规范→建议→预防",
+      "qualityGates": ["符合规范", "避免不当", "促进诚信"]
+    },
+    "conference_organization": {
+      "keywords": ["会议组织", "组织会议", "大型会议", "学术会议"],
+      "skills": ["conference-organizer", "logistics-manager"],
+      "tools": ["feishu_create_doc", "feishu_task_task"],
+      "subtasks": ["plan", "invite", "coordinate", "execute"],
+      "description": "会议组织",
+      "phase": "计划→邀请→协调→执行",
+      "qualityGates": ["流程顺畅", "参会者满意", "目标达成"]
+    },
+    "exhibition_planning": {
+      "keywords": ["展览", "展览策划", "展会", "展览计划"],
+      "skills": ["exhibition-planner", "curator"],
+      "tools": ["feishu_create_doc", "feishu_task_task"],
+      "subtasks": ["theme", "select_items", "layout", "execute"],
+      "description": "展览策划",
+      "phase": "主题→选择展品→布局→执行",
+      "qualityGates": ["主题鲜明", "展品精当", "体验好"]
+    },
+    "wedding_planning": {
+      "keywords": ["婚礼", "婚礼策划", "筹备婚礼", "结婚"],
+      "skills": ["wedding-planner", "detail-coordinator"],
+      "tools": ["feishu_create_doc", "feishu_task_task"],
+      "subtasks": ["budget", "guest_list", "venue", "coordinate"],
+      "description": "婚礼策划",
+      "phase": "预算→宾客名单→场地→协调",
+      "qualityGates": ["符合预期", "流程顺利", "难忘"]
+    },
+    "party_planning": {
+      "keywords": ["派对", "派对策划", "聚会策划", "生日派对"],
+      "skills": ["party-planner", "fun-creator"],
+      "tools": ["feishu_create_doc", "feishu_task_task"],
+      "subtasks": ["theme", "guest_list", "plan", "execute"],
+      "description": "派对策划",
+      "phase": "主题→宾客名单→计划→执行",
+      "qualityGates": ["气氛好", "流程顺", "大家开心"]
+    },
+    "team_building": {
+      "keywords": ["团建", "团队建设", "team building", "集体活动"],
+      "skills": ["team-building-facilitator", "morale-booster"],
+      "tools": ["feishu_create_doc", "feishu_task_task"],
+      "subtasks": ["assess_team", "choose_activity", "plan", "debrief"],
+      "description": "团建活动",
+      "phase": "评估团队→选择活动→计划→总结",
+      "qualityGates": ["增强凝聚力", "放松身心", "有收获"]
+    },
+    "task_planning": {
+      "keywords": ["任务", "任务规划", "任务管理", "待办事项"],
+      "skills": ["task-planner", "priority-setter"],
+      "tools": ["feishu_task_task", "feishu_bitable"],
+      "subtasks": ["capture", "categorize", "prioritize", "schedule"],
+      "description": "任务规划",
+      "phase": "记录→分类→优先级→安排",
+      "qualityGates": ["不遗漏", "优先级清晰", "可执行"]
+    },
+    "project_management": {
+      "keywords": ["项目", "项目管理", "项目计划", "项目协调"],
+      "skills": ["project-manager", "stakeholder-coordinator"],
+      "tools": ["feishu_task_task", "feishu_bitable"],
+      "subtasks": ["initiate", "plan", "execute", "monitor", "close"],
+      "description": "项目管理",
+      "phase": "启动→计划→执行→监控→收尾",
+      "qualityGates": ["目标达成", "按时交付", "利益相关者满意"]
+    },
+    "email_management": {
+      "keywords": ["邮件", "邮件管理", "处理邮件", "邮箱整理"],
+      "skills": ["email-organizer", "inbox-zero-expert"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["process", "organize", "respond", "archive"],
+      "description": "邮件管理",
+      "phase": "处理→整理→回复→归档",
+      "qualityGates": ["inbox 清空", "重要邮件处理", "归档有序"]
+    },
+    "file_organization": {
+      "keywords": ["文件", "文件整理", "文件管理", "资料整理"],
+      "skills": ["file-organizer", "naming-expert"],
+      "tools": ["exec", "read"],
+      "subtasks": ["collect", "categorize", "name", "store"],
+      "description": "文件整理",
+      "phase": "收集→分类→命名→存储",
+      "qualityGates": ["分类清晰", "命名规范", "易查找"]
+    }
+  }
+}

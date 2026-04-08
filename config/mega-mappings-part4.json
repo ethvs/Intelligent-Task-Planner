@@ -1,0 +1,184 @@
+{
+  "taskCategories": {
+    "cover_letter": {
+      "keywords": ["求职信", "自荐信", "cover letter", "申请信"],
+      "skills": ["cover-letter-writer", "persuasive-writer"],
+      "tools": ["feishu_create_doc", "write"],
+      "subtasks": ["understand_job", "highlight_match", "write", "polish"],
+      "description": "求职信写作",
+      "phase": "理解职位→突出匹配→写作→润色",
+      "qualityGates": ["针对性强", "有说服力", "专业"]
+    },
+    "salary_negotiation": {
+      "keywords": ["薪资谈判", "谈薪水", "薪资协商", "加薪谈判"],
+      "skills": ["negotiation-strategist", "market-analyzer"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["research_market", "prepare_case", "negotiate"],
+      "description": "薪资谈判",
+      "phase": "市场调研→准备案例→谈判",
+      "qualityGates": ["数据支持", "策略清晰", "语气温和"]
+    },
+    "career_transition": {
+      "keywords": ["职业转型", "转行", "换行业", "职业转变"],
+      "skills": ["career-transition-coach", "gap-analyzer"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["assess_current", "identify_target", "gap_analysis", "action_plan"],
+      "description": "职业转型",
+      "phase": "评估现状→确定目标→差距分析→行动计划",
+      "qualityGates": ["目标清晰", "路径可行", "风险可控"]
+    },
+    "side_hustle": {
+      "keywords": ["副业", "兼职", "副业规划", "搞钱", "斜杠"],
+      "skills": ["side-hustle-advisor", "opportunity-finder"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["assess_skills", "find_opportunities", "evaluate", "plan"],
+      "description": "副业规划",
+      "phase": "技能评估→发现机会→评估→计划",
+      "qualityGates": ["匹配技能", "时间可行", "收益合理"]
+    },
+    "personal_branding": {
+      "keywords": ["个人品牌", "个人 IP", "品牌塑造", "个人形象"],
+      "skills": ["brand-strategist", "positioning-expert"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["define_identity", "target_audience", "strategy", "execute"],
+      "description": "个人品牌",
+      "phase": "定义身份→目标受众→策略→执行",
+      "qualityGates": ["定位清晰", "差异化", "可持续"]
+    },
+    "networking_strategy": {
+      "keywords": ["人脉", "社交", "人脉建立", "networking"],
+      "skills": ["networking-coach", "relationship-builder"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["identify_targets", "approach_strategy", "maintain"],
+      "description": "人脉建立",
+      "phase": "识别目标→接触策略→维护",
+      "qualityGates": ["目标明确", "方法自然", "长期维护"]
+    },
+    "leadership_development": {
+      "keywords": ["领导力", "领导力发展", "管理能力", "带团队"],
+      "skills": ["leadership-coach", "management-advisor"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["assess_style", "identify_gaps", "development_plan", "practice"],
+      "description": "领导力发展",
+      "phase": "评估风格→识别差距→发展计划→实践",
+      "qualityGates": ["自我认知", "计划具体", "可实践"]
+    },
+    "investment_advice": {
+      "keywords": ["投资", "投资建议", "理财投资", "投资咨询"],
+      "skills": ["investment-advisor", "risk-analyzer"],
+      "tools": ["feishu_sheet", "feishu_create_doc"],
+      "subtasks": ["assess_risk", "understand_goals", "suggest_allocation", "monitor"],
+      "description": "投资建议",
+      "phase": "风险评估→目标理解→配置建议→监控",
+      "qualityGates": ["风险匹配", "建议合理", "风险提示"]
+    },
+    "stock_analysis": {
+      "keywords": ["股票", "股票分析", "个股分析", "炒股"],
+      "skills": ["stock-analyst", "financial-statement-reader"],
+      "tools": ["feishu_sheet", "exec"],
+      "subtasks": ["company_analysis", "financial_analysis", "valuation", "risk"],
+      "description": "股票分析",
+      "phase": "公司分析→财务分析→估值→风险",
+      "qualityGates": ["数据准确", "分析全面", "风险提示"]
+    },
+    "fund_selection": {
+      "keywords": ["基金", "基金选择", "选基金", "基金推荐"],
+      "skills": ["fund-analyst", "performance-evaluator"],
+      "tools": ["feishu_sheet", "read"],
+      "subtasks": ["understand_type", "performance_analysis", "risk_analysis", "select"],
+      "description": "基金选择",
+      "phase": "了解类型→业绩分析→风险分析→选择",
+      "qualityGates": ["风险收益匹配", "费用合理", "长期稳定"]
+    },
+    "insurance_planning": {
+      "keywords": ["保险", "保险规划", "买保险", "保险配置"],
+      "skills": ["insurance-advisor", "risk-coverage-expert"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["assess_risks", "coverage_gaps", "recommend_products", "review"],
+      "description": "保险规划",
+      "phase": "风险评估→保障缺口→产品推荐→回顾",
+      "qualityGates": ["保障充分", "保费合理", "条款清晰"]
+    },
+    "tax_planning": {
+      "keywords": ["税务", "税务规划", "合理避税", "税务筹划"],
+      "skills": ["tax-planner", "tax-law-expert"],
+      "tools": ["feishu_create_doc", "read"],
+      "subtasks": ["understand_situation", "identify_opportunities", "plan", "comply"],
+      "description": "税务规划",
+      "phase": "了解情况→识别机会→规划→合规",
+      "qualityGates": ["合法合规", "节约税负", "风险可控"]
+    },
+    "budget_management": {
+      "keywords": ["预算", "预算管理", "做预算", "预算控制"],
+      "skills": ["budget-planner", "expense-tracker"],
+      "tools": ["feishu_sheet", "feishu_bitable"],
+      "subtasks": ["income_analysis", "expense_tracking", "budget_creation", "monitor"],
+      "description": "预算管理",
+      "phase": "收入分析→支出追踪→预算制定→监控",
+      "qualityGates": ["收支平衡", "可执行", "有弹性"]
+    },
+    "cost_control": {
+      "keywords": ["成本", "成本控制", "降本", "节约成本"],
+      "skills": ["cost-analyst", "efficiency-expert"],
+      "tools": ["feishu_sheet", "read"],
+      "subtasks": ["identify_costs", "analyze_waste", "reduce", "monitor"],
+      "description": "成本控制",
+      "phase": "识别成本→分析浪费→削减→监控",
+      "qualityGates": ["不影响质量", "成本下降", "可持续"]
+    },
+    "profit_analysis": {
+      "keywords": ["利润", "利润分析", "盈利能力", "盈利分析"],
+      "skills": ["profit-analyst", "margin-optimizer"],
+      "tools": ["feishu_sheet", "read"],
+      "subtasks": ["revenue_analysis", "cost_analysis", "margin_calculation", "improve"],
+      "description": "利润分析",
+      "phase": "收入分析→成本分析→利润率计算→改进",
+      "qualityGates": ["数据准确", "分析深入", "建议可行"]
+    },
+    "cashflow_management": {
+      "keywords": ["现金流", "现金流管理", "资金流", "流动资金"],
+      "skills": ["cashflow-manager", "liquidity-expert"],
+      "tools": ["feishu_sheet", "read"],
+      "subtasks": ["cash_in", "cash_out", "forecast", "optimize"],
+      "description": "现金流管理",
+      "phase": "流入→流出→预测→优化",
+      "qualityGates": ["流动性充足", "预测准确", "风险可控"]
+    },
+    "code_java": {
+      "keywords": ["Java", "Java 开发", "java 代码", "java 程序"],
+      "skills": ["java-coder", "spring-expert"],
+      "tools": ["exec", "write"],
+      "subtasks": ["understand", "design", "implement", "test"],
+      "description": "Java 代码开发",
+      "phase": "理解→设计→实现→测试",
+      "qualityGates": ["功能完整", "代码规范", "性能良好"]
+    },
+    "code_cpp": {
+      "keywords": ["C++", "C++开发", "cpp 代码", "C 语言"],
+      "skills": ["cpp-coder", "performance-optimizer"],
+      "tools": ["exec", "write"],
+      "subtasks": ["understand", "design", "implement", "optimize"],
+      "description": "C++ 代码开发",
+      "phase": "理解→设计→实现→优化",
+      "qualityGates": ["功能正确", "性能优异", "内存安全"]
+    },
+    "web_development": {
+      "keywords": ["网站", "网站开发", "网页制作", "建站"],
+      "skills": ["web-developer", "frontend-backend-integrator"],
+      "tools": ["exec", "write"],
+      "subtasks": ["requirements", "design", "frontend", "backend", "deploy"],
+      "description": "网站开发",
+      "phase": "需求→设计→前端→后端→部署",
+      "qualityGates": ["功能完整", "体验良好", "性能稳定"]
+    },
+    "app_development": {
+      "keywords": ["APP", "应用开发", "移动应用", "小程序"],
+      "skills": ["app-developer", "mobile-ux-expert"],
+      "tools": ["exec", "write"],
+      "subtasks": ["requirements", "design", "develop", "test", "publish"],
+      "description": "APP 开发",
+      "phase": "需求→设计→开发→测试→发布",
+      "qualityGates": ["功能完整", "体验流畅", "无重大 bug"]
+    }
+  }
+}
