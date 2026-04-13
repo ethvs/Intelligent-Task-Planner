@@ -1,3 +1,102 @@
+---
+name: intelligent-task-planner
+version: 6.0.0-final
+description: |
+  智能任务规划器 - 高度自主的AI任务自动化引擎
+  Auto-Skill Orchestrator with 152 task types
+author: ethvs
+license: MIT
+repository: https://github.com/ethvs/Intelligent-Task-Planner
+
+# 技能分类
+category: automation
+tags:
+  - task-planner
+  - intent-recognition
+  - skill-orchestrator
+  - automation
+  - ai-assistant
+
+# 入口配置
+entry:
+  file: index.js
+  function: analyze
+
+# 导出接口
+exports:
+  - analyze
+  - recognize
+  - getSupportedTasks
+  - getTaskDetails
+  - validateConfig
+  - batchAnalyze
+
+# 技能依赖
+dependencies:
+  - node: ">=14.0"
+
+# 可选技能集成
+optionalSkills:
+  - openclaw/storyteller
+  - openclaw/analyzer
+  - openclaw/coder
+  - clawrouter/writer
+  - clawrouter/coder
+
+# 配置参数
+config:
+  autoInstall:
+    type: boolean
+    default: true
+    description: 自动安装缺失技能
+  sources:
+    type: array
+    default: ["clawhub", "github", "openclaw"]
+    description: 技能查找来源
+  qualityThreshold:
+    type: number
+    default: 0.85
+    description: 质量门控阈值
+  maxSteps:
+    type: number
+    default: 20
+    description: 最大执行步骤
+  timeoutMinutes:
+    type: number
+    default: 30
+    description: 任务超时时间
+
+# 触发条件
+triggers:
+  - type: intent
+    patterns:
+      - ".*"
+    description: 所有自然语言输入
+
+# 性能指标
+metrics:
+  taskTypes: 152
+  keywords: 1325
+  avgConfidence: 99.1
+  responseTime: "0.27ms"
+
+# 支持的语言
+languages:
+  - zh-CN
+  - en-US
+
+# 文档
+documentation:
+  readme: README.md
+  skill: SKILL.md
+  api: docs/API.md
+  changelog: docs/CHANGELOG.md
+
+# 测试
+test:
+  command: "node test/comprehensive-test.js"
+---
+
 # Intelligent Task Planner v6.0.0-final
 
 **智能任务规划器** - 高度自主的AI任务自动化引擎
@@ -140,23 +239,40 @@ const intent = recognize('分析一下销售数据');
 
 ---
 
-## 技能配置
+## 配置参数详解
 
-```json
-{
-  "name": "intelligent-task-planner",
-  "version": "6.0.0-final",
-  "autoInstall": true,
-  "sources": ["clawhub", "github", "openclaw"],
-  "requireConfirmation": false,
-  "maxSteps": 20,
-  "timeoutMinutes": 30,
-  "qualityThreshold": 0.85,
-  "enableSkillChain": true,
-  "qualityGate": true,
-  "maxIterations": 3
-}
-```
+| 参数名 | 类型 | 默认值 | 说明 |
+|--------|------|--------|------|
+| autoInstall | boolean | true | 自动安装缺失技能 |
+| sources | array | ["clawhub", "github", "openclaw"] | 技能查找来源 |
+| qualityThreshold | number | 0.85 | 质量门控阈值(0-1) |
+| maxSteps | number | 20 | 最大执行步骤数 |
+| timeoutMinutes | number | 30 | 任务超时时间(分钟) |
+| requireConfirmation | boolean | false | 是否需要用户确认 |
+| enableSkillChain | boolean | true | 是否启用技能链 |
+| qualityGate | boolean | true | 是否启用质量门控 |
+| maxIterations | number | 3 | 最大迭代优化次数 |
+
+---
+
+## 导出接口
+
+| 接口名 | 说明 |
+|--------|------|
+| `analyze(userInput, context)` | 完整分析并执行用户任务 |
+| `recognize(userInput)` | 快速意图识别 |
+| `getSupportedTasks()` | 获取所有支持的任务类型 |
+| `getTaskDetails(taskType)` | 获取任务详情 |
+| `validateConfig()` | 验证系统配置 |
+| `batchAnalyze(inputs)` | 批量分析多个任务 |
+
+---
+
+## 依赖
+
+- Node.js ≥ 14.0
+- 可选: clawhub CLI (技能安装)
+- 可选: openclaw CLI (官方技能)
 
 ---
 
@@ -208,14 +324,6 @@ const intent = recognize('分析一下销售数据');
 | `src/skill-matcher.js` | OpenClaw/ClawHub技能匹配器 |
 | `src/executor.js` | 任务执行与质量验证引擎 |
 | `config/ultimate-mappings.json` | 终极任务-技能映射配置 |
-
----
-
-## 依赖
-
-- Node.js ≥ 14.0
-- 可选: clawhub CLI (技能安装)
-- 可选: openclaw CLI (官方技能)
 
 ---
 
