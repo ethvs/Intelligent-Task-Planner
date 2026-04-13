@@ -12,6 +12,13 @@ class IntentAnalyzer {
   }
 
   loadMappings() {
+    // 优先加载终极映射文件
+    const ultimatePath = path.join(__dirname, '../config/ultimate-mappings.json');
+    if (fs.existsSync(ultimatePath)) {
+      return JSON.parse(fs.readFileSync(ultimatePath, 'utf-8'));
+    }
+
+    // 回退到原始映射
     const mappingPath = path.join(__dirname, '../config/mappings.json');
     if (fs.existsSync(mappingPath)) {
       return JSON.parse(fs.readFileSync(mappingPath, 'utf-8'));

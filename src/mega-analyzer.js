@@ -25,6 +25,13 @@ class MegaAnalyzer {
   }
 
   loadMappings() {
+    // 优先加载终极映射文件
+    const ultimatePath = path.join(__dirname, '../config/ultimate-mappings.json');
+    if (fs.existsSync(ultimatePath)) {
+      return JSON.parse(fs.readFileSync(ultimatePath, 'utf-8'));
+    }
+
+    // 回退到 mega-mappings
     const mappingPath = path.join(__dirname, '../config/mega-mappings.json');
     if (fs.existsSync(mappingPath)) {
       return JSON.parse(fs.readFileSync(mappingPath, 'utf-8'));
@@ -347,41 +354,96 @@ class MegaAnalyzer {
   }
 
   /**
-   * 计算类别得分
+   * 计算类别得分 - 增强版多维度评分
    */
   calculateCategoryScore(categoryKey, categoryData, scanResult) {
-    const { verbMatch, nounMatch, modifierMatch } = scanResult;
+    const { verbMatch, nounMatch, modifierMatch, tokens } = scanResult;
     let score = 0;
-    
-    // 动词匹配得分
-    if (verbMatch) {
-      const keywords = categoryData.keywords || [];
-      const hasVerb = keywords.some(k => k.includes(verbMatch.verb));
-      if (hasVerb) score += 0.4;
-    }
-    
-    // 名词匹配得分
-    if (nounMatch) {
-      const keywords = categoryData.keywords || [];
-      const hasNoun = keywords.some(k => k.includes(nounMatch.noun));
-      if (hasNoun) score += 0.4;
-    }
-    
-    // 修饰词匹配得分
-    if (modifierMatch) {
-      const keywords = categoryData.keywords || [];
-      const hasModifier = keywords.some(k => k.includes(modifierMatch.modifier));
-      if (hasModifier) score += 0.2;
-    }
-    
-    // 关键词精确匹配
     const keywords = categoryData.keywords || [];
-    for (const keyword of keywords) {
-      if (scanResult.tokens.some(t => t.includes(keyword.toLowerCase()))) {
-        score += 0.3;
+    const input = tokens.join(' ');
+
+    // ====== 1. 三层核心匹配得分 ======
+    let layerMatches = 0;
+
+    // 动词匹配得分 - 强意图信号
+    if (verbMatch) {
+      const hasVerb = keywords.some(k => k.includes(verbMatch.verb));
+      if (hasVerb) {
+        score += 0.35;
+        layerMatches++;
       }
     }
-    
+
+    // 名词匹配得分 - 核心对象
+    if (nounMatch) {
+      const hasNoun = keywords.some(k => k.includes(nounMatch.noun));
+      if (hasNoun) {
+        score += 0.35;
+        layerMatches++;
+      }
+    }
+
+    // 修饰词匹配得分 - 细化意图
+    if (modifierMatch) {
+      const hasModifier = keywords.some(k => k.includes(modifierMatch.modifier));
+      if (hasModifier) {
+        score += 0.20;
+        layerMatches++;
+      }
+    }
+
+    // ====== 2. 组合加成 - 多维度同时匹配 ======
+    if (layerMatches >= 3) {
+      score *= 1.4; // 三层全匹配，40%加成
+    } else if (layerMatches >= 2) {
+      score *= 1.25; // 两层匹配，25%加成
+    }
+
+    // ====== 3. 关键词精确匹配（带权重） ======
+    let keywordMatchCount = 0;
+    let exactMatchBonus = 0;
+
+    for (const keyword of keywords) {
+      const kw = keyword.toLowerCase();
+
+      // 精确包含匹配
+      if (input.includes(kw)) {
+        keywordMatchCount++;
+
+        // 位置权重（越靠前权重越高）
+        const position = input.indexOf(kw);
+        const positionWeight = position >= 0 ? (1 - position / (input.length + 1)) : 0.5;
+
+        // 长度权重（越长越精确）
+        const lengthWeight = Math.min(1, kw.length / 4);
+
+        // 组合短语权重（2字以上短语）
+        const phraseWeight = kw.length >= 2 ? 1.3 : 1.0;
+
+        const weightedScore = 0.12 * positionWeight * (1 + lengthWeight) * phraseWeight;
+        score += weightedScore;
+        exactMatchBonus += 0.08;
+      }
+    }
+
+    // 多关键词匹配额外加成
+    if (keywordMatchCount >= 3) {
+      score *= 1.3;
+    } else if (keywordMatchCount >= 2) {
+      score *= 1.15;
+    }
+
+    // ====== 4. 类别特征匹配（针对特定领域） ======
+    const description = categoryData.description || '';
+    const categoryKeywords = description.toLowerCase().split(/[,\uFF0C\u3001\uFF1B;]/);
+
+    // 检查输入是否包含类别描述中的关键词
+    for (const catKw of categoryKeywords) {
+      if (catKw.trim() && input.includes(catKw.trim())) {
+        score += 0.15;
+      }
+    }
+
     return score;
   }
 
