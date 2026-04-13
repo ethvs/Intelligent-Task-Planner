@@ -1,0 +1,222 @@
+# Intelligent Task Planner - Agent 通用配置模板
+# 将此文件复制到你的 Agent 目录下，命名为 agent.yaml
+# 此配置确保 ITP 技能被强制触发和执行
+
+---
+# ==================== Agent 基本信息 ====================
+# 修改为你的 Agent 名称和描述
+name: your-agent-name
+description: |
+  由 Intelligent Task Planner 驱动的智能 Agent
+  所有任务自动经过意图识别和规划后才执行
+
+# Agent 版本
+version: 1.0.0
+
+# ==================== 技能配置 - 强制 ITP ====================
+skills:
+  # [必须] Intelligent Task Planner 作为主控技能
+  # 必须在第一位，确保最高优先级
+  - intelligent-task-planner
+
+  # [可选] 其他具体执行技能，按需添加
+  # 这些技能只在 ITP 规划后才会被调用
+  # - openclaw/storyteller      # OpenClaw 官方技能
+  # - clawrouter/writer         # ClawHub 社区技能
+  # - openclaw/analyzer         # 数据分析
+  # - openclaw/coder            # 编程辅助
+
+  # [可选] 本地自定义技能
+  # local:
+  #   - ./skills/custom-handler.js
+
+# ==================== 系统提示词 - 强制声明 ====================
+system_prompt: |
+  你是由 Intelligent Task Planner (ITP) 驱动的智能 Agent。
+
+  ## 核心规则 (必须遵守):
+  1. 所有用户输入必须先通过 ITP 进行意图分析和任务规划
+  2. 未经 ITP 规划的任务不得直接执行
+  3. 严格按照 ITP 返回的 skill_chain 顺序调用技能
+  4. 不得跳过质量门控验证步骤
+
+  ## 执行流程:
+  输入 → ITP分析 → 生成plan → 按序执行skills → 质量验证 → 输出结果
+
+  ## 禁止行为:
+  - 直接响应用户需求而不经过规划
+  - 自行选择执行技能而非按 ITP 规划
+  - 跳过质量检查环节
+
+# ==================== 触发配置 - 强制拦截 ====================
+intent:
+  # [关键] 默认技能 - 所有输入都交给 ITP
+  default_skill: intelligent-task-planner
+
+  # [关键] 强制 ITP 优先
+  priority:
+    intelligent-task-planner: 1000  # 最高优先级
+
+  # [关键] 独占模式 - ITP 匹配后不再检查其他技能
+  exclusive_mode: true
+
+  # [关键] 拦截所有输入
+  intercept_all: true
+
+  # 触发器配置
+  triggers:
+    - type: intent
+      skill: intelligent-task-planner
+      priority: 1000
+      exclusive: true
+      # 触发条件 - 所有自然语言输入
+      patterns:
+        - ".*"
+      min_confidence: 0.85  # 最低置信度
+      fallback_action: reject  # 低于阈值拒绝执行
+
+# ==================== 执行配置 - 严格执行 ====================
+execution:
+  # [关键] 强制按规划执行
+  follow_plan: true
+
+  # [关键] 不允许跳过规划
+  allow_skip_planning: false
+
+  # [关键] 强制执行技能链
+  enforce_skill_chain: true
+
+  # [关键] 覆盖原系统提示词
+  override_system_prompt: true
+
+  # ITP 配置引用
+  itp_config:
+    # 从 ITP skill.yaml 读取，也可覆盖
+    quality_threshold: 0.85
+    max_steps: 20
+    timeout_minutes: 30
+    auto_install: true
+
+# ==================== 钩子配置 - 全流程接管 ====================
+hooks:
+  # 预处理钩子 - 输入必须先经过 ITP
+  before_input:
+    - skill: intelligent-task-planner
+      action: analyze
+      required: true  # 失败则阻止后续执行
+
+  # 后处理钩子 - 输出前质量检查
+  before_output:
+    - skill: intelligent-task-planner
+      action: validate
+      required: true
+
+  # 失败处理
+  on_plan_fail: stop  # stop | fallback | ignore
+
+  # ITP 未识别时的处理
+  on_not_recognized:
+    action: ask_for_clarification  # ask_for_clarification | reject | default
+    prompt: "请明确描述您的任务需求，例如:'帮我写一部玄幻小说'或'分析一下销售数据'"
+
+# ==================== 质量门控 - 严格执行 ====================
+quality_gates:
+  enabled: true
+  threshold: 0.85
+  checks:
+    - completeness      # 完整性
+    - logic_consistency # 逻辑一致性
+    - ai_detection      # AI感检测
+    - grammar           # 语法
+    - format            # 格式规范
+  # 不达标时自动迭代
+  auto_iterate:
+    enabled: true
+    max_iterations: 3
+
+# ==================== Agent 能力声明 ====================
+capabilities:
+  - name: task_planning
+    skill: intelligent-task-planner
+    description: 自动任务规划
+
+  - name: intent_recognition
+    skill: intelligent-task-planner
+    description: 意图识别
+
+  - name: skill_orchestration
+    skill: intelligent-task-planner
+    description: 技能编排
+
+# ==================== 日志与监控 ====================
+logging:
+  level: info
+  log_planning: true      # 记录规划过程
+  log_execution: true       # 记录执行过程
+  log_quality_checks: true  # 记录质量检查
+
+# ==================== 安全与限制 ====================
+constraints:
+  # 最大执行步骤
+  max_steps: 20
+  # 超时时间
+  timeout_seconds: 1800
+  # 是否允许人格覆盖
+  allow_persona_override: false
+  # 是否允许跳过ITP
+  allow_bypass_itp: false
+
+---
+
+## 使用说明
+
+### 1. 基础使用 (最小配置)
+复制此模板，只修改 `name` 和 `description`：
+```yaml
+name: my-agent
+description: 我的智能 Agent
+# 其余配置保持默认
+```
+
+### 2. 添加执行技能
+在 `skills` 列表中添加你需要的具体技能：
+```yaml
+skills:
+  - intelligent-task-planner  # 必须保留
+  - openclaw/storyteller      # 添加写作技能
+  - openclaw/analyzer         # 添加分析技能
+```
+
+### 3. 调整严格程度
+如果需要更宽松 (仅建议调试时使用)：
+```yaml
+intent:
+  exclusive_mode: false      # 允许其他技能竞争
+  min_confidence: 0.70       # 降低门槛
+execution:
+  allow_skip_planning: true  # 允许跳过规划
+```
+
+### 4. 验证配置
+安装 Agent 后测试：
+```bash
+openclaw agent test my-agent
+# 输入: "帮我写一部玄幻小说"
+# 应该看到 ITP 的规划和执行流程
+```
+
+## 故障排除
+
+| 问题 | 检查项 |
+|------|--------|
+| ITP 不触发 | 检查 `intelligent-task-planner` 是否在 skills 首位 |
+| 触发但不执行 | 检查 `follow_plan: true` 和 `enforce_skill_chain: true` |
+| 其他技能抢优先级 | 检查 `priority: 1000` 和 `exclusive_mode: true` |
+| 用户输入直接响应 | 检查 `intercept_all: true` 和 `override_system_prompt: true` |
+
+## 配置验证
+
+运行以下命令验证 agent.yaml 格式：
+```bash
+openclaw validate agent.yaml
+```
