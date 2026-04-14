@@ -21,10 +21,8 @@
   - 最小置信度: 0.85
 
 ### 执行技能（按需选择）
-- openclaw/storyteller (写作)
-- openclaw/analyzer (数据分析)
-- openclaw/coder (编程)
-- clawrouter/writer (写作增强)
+- 在 agents.md 的 skills 部分添加你需要的具体技能
+- ITP 会自动从已安装技能或 ClawHub 搜索匹配的技能
 
 ### 执行规则
 1. 所有用户输入必须经过 ITP 分析
@@ -80,32 +78,37 @@ intelligent-task-planner:
     enforce_chain: true
 ```
 
-### 执行技能（按需选择）
+### 执行技能配置说明
+
+ITP 采用**完全动态发现**模式，不预设任何具体技能名称：
+
+1. **首先检查全局已安装的技能** - ITP 扫描系统中已安装的技能
+2. **其次从 ClawHub 搜索** - 在 ClawHub 商店搜索匹配的技能
+3. **自动安装到全局** - 找到的技能自动安装到 `.openclaw/skills` 全局目录
+4. **全局调用执行** - 从全局目录调用执行
+
+**优先级排序**:
+- 第1优先级: 最佳最匹配的技能（名称/描述完全匹配）
+- 第2优先级: 高相关度技能（功能标签匹配）
+- 第3优先级: 近似或功能相似的技能（关键词模糊匹配）
+
+**示例配置**（仅作为说明，实际技能名由 ITP 动态发现）：
 ```yaml
-# 写作类
-openclaw/storyteller:
+# ITP 会自动查找creative_writing类别的最佳匹配技能
+# 例如找到: @author/writer, @user/story-creator 等
+creative_writing:
   trigger: after_itp_plan
-  category: creative_writing
 
-clawrouter/writer:
+# ITP 会自动查找data_analysis类别的最佳匹配技能  
+data_analysis:
   trigger: after_itp_plan
-  category: creative_writing
 
-# 分析类
-openclaw/analyzer:
+# ITP 会自动查找code_generation类别的最佳匹配技能
+code_generation:
   trigger: after_itp_plan
-  category: data_analysis
-
-# 编程类
-openclaw/coder:
-  trigger: after_itp_plan
-  category: code_generation
-
-# 图片类
-imagegen:
-  trigger: after_itp_plan
-  category: image_generation
 ```
+
+> **说明**: ITP 会根据任务类型自动发现并使用最佳匹配的技能，无需在配置中硬编码具体技能名称。
 
 ---
 
@@ -158,7 +161,7 @@ ITP 分析 (必须)
 
 ### 技能配置
 - intelligent-task-planner (required, priority: 1000)
-- openclaw/storyteller
+- 其他执行技能由 ITP 动态发现并调用（从已安装技能或 ClawHub 自动查找）
 
 ### 禁用行为
 - [x] 不经过规划直接写作
@@ -179,8 +182,7 @@ ITP 分析 (必须)
 
 ### 技能配置
 - intelligent-task-planner (required, priority: 1000)
-- openclaw/analyzer
-- chart-generator
+- 分析/可视化技能由 ITP 动态发现并调用（从已安装技能或 ClawHub 自动查找）
 
 ### 数据安全
 - [x] 敏感数据先脱敏
@@ -200,17 +202,19 @@ ITP 分析 (必须)
 
 ### 技能配置
 - intelligent-task-planner (required, priority: 1000)
-- openclaw/storyteller (写作)
-- openclaw/analyzer (分析)
-- openclaw/coder (编程)
-- openclaw/searcher (搜索)
+- 其他执行技能由 ITP 动态发现并调用（从已安装技能或 ClawHub 自动查找）
 
 ### 任务路由
-ITP 识别任务类型后自动路由到：
-- creative_writing → storyteller
-- data_analysis → analyzer
-- code_generation → coder
-- web_search → searcher
+ITP 识别任务类型后自动路由到对应类别的最佳匹配技能：
+- creative_writing → ITP 自动查找并调用写作类技能
+- data_analysis → ITP 自动查找并调用分析类技能
+- code_generation → ITP 自动查找并调用编程类技能
+- web_search → ITP 自动查找并调用搜索类技能
+
+> **说明**: ITP 会按优先级自动发现最佳匹配技能：
+> 1. 优先：全局已安装的最佳匹配技能
+> 2. 其次：从 ClawHub 搜索/安装的高匹配度技能
+> 3. 兜底：功能近似的替代技能
 ```
 
 ---
@@ -411,32 +415,45 @@ intelligent-task-planner:
     fallback_action: reject
 ```
 
-### 执行技能
+### 执行技能动态发现说明
+
+ITP **不预设任何具体技能名称**，采用完全动态发现模式：
+
 ```yaml
-# 写作
-- name: openclaw/storyteller
-  trigger: after_itp_plan
-  when: task_type == "creative_writing*"
+# 任务类型与技能类别的映射关系
+# ITP 会根据任务类型自动发现最佳匹配技能
 
-- name: clawrouter/writer
+creative_writing:
+  # ITP 执行流程：
+  # 1. 扫描全局已安装技能，查找 creative/writing 标签的技能
+  # 2. 如未找到，在 ClawHub 搜索 "writer", "storyteller", "creative" 等关键词
+  # 3. 按匹配度排序，选择最佳技能
+  # 4. 自动安装到 .openclaw/skills 全局目录
+  # 5. 从全局目录调用执行
   trigger: after_itp_plan
-  when: task_type == "creative_writing*"
 
-# 分析
-- name: openclaw/analyzer
+data_analysis:
+  # ITP 执行流程：
+  # 1. 扫描全局已安装技能，查找 analysis/data 标签的技能
+  # 2. 如未找到，在 ClawHub 搜索 "analyzer", "data", "chart" 等关键词
+  # 3. 按匹配度排序，选择最佳技能
+  # 4. 自动安装并调用
   trigger: after_itp_plan
-  when: task_type == "data_analysis*"
 
-# 编程
-- name: openclaw/coder
+code_generation:
+  # 同上流程，查找 coding/code 标签的技能
   trigger: after_itp_plan
-  when: task_type == "code_*"
 
-# 搜索
-- name: openclaw/searcher
+web_search:
+  # 同上流程，查找 search/fetch 标签的技能
   trigger: after_itp_plan
-  when: task_type == "*_search" or task_type == "*_query"
 ```
+
+**技能匹配优先级（从高到低）**：
+1. **最佳匹配** (匹配度 ≥0.9): 名称或描述与任务完全匹配的技能
+2. **高相关** (匹配度 0.7-0.9): 功能标签与任务类型一致的技能
+3. **近似匹配** (匹配度 0.5-0.7): 功能相似可替代的技能
+4. **兜底方案**: 使用通用技能或提示用户
 
 ---
 

@@ -36,12 +36,12 @@ dependencies:
   - node: ">=14.0"
 
 # 可选技能集成
-optionalSkills:
-  - openclaw/storyteller
-  - openclaw/analyzer
-  - openclaw/coder
-  - clawrouter/writer
-  - clawrouter/coder
+# ITP 会自动识别任务所需技能，并从以下渠道查找和调用：
+# 1. 优先使用全局已安装的技能
+# 2. 从 ClawHub 搜索并安装匹配的技能
+# 3. 使用内置通用技能作为兜底
+optionalSkills: []
+# 动态发现 - 无需预配置，ITP 会按需自动匹配
 
 # 配置参数
 config:
@@ -95,6 +95,23 @@ documentation:
 # 测试
 test:
   command: "node test/comprehensive-test.js"
+
+# 强制模式配置 (解决不触发/不执行问题)
+force_mode:
+  enabled: true
+  priority: 1000                    # 最高优先级
+  exclusive: true                   # 独占模式，匹配后阻止其他技能
+  intercept_all: true               # 拦截所有输入
+  min_confidence: 0.85              # 最低置信度阈值
+  fallback_action: "reject"         # 不达标时拒绝执行
+  agent_override:                   # Agent级别覆盖
+    override_system_prompt: true    # 覆盖系统提示词
+    require_planning: true          # 强制要求规划
+    enforce_skill_chain: true       # 强制执行技能链
+  hook_config:
+    pre_processing: true            # 预处理钩子
+    post_processing: true           # 后处理钩子
+    on_plan_fail: "stop"            # 规划失败时停止
 ---
 
 # Intelligent Task Planner v6.0.0-final
@@ -283,7 +300,7 @@ const intent = recognize('分析一下销售数据');
 用户: 帮我写一部玄幻小说，主角废材逆袭
 系统:
   → 识别: creative_writing_novel (100%)
-  → 匹配: openclaw/storyteller, clawrouter/writer
+  → 匹配: 从已安装技能/ClawHub 动态查找写作类技能
   → 规划: 6个技能节点，4阶段执行
   → 执行: 大纲→角色→世界观→章节→润色→审阅
   → 交付: 完整小说文档

@@ -37,7 +37,7 @@ async function runTests() {
     const pass = result.confidence >= tc.minConfidence;
     const icon = pass ? '✅' : '❌';
     console.log(`${icon} ${tc.input}`);
-    console.log(`   Category: ${result.category}, Confidence: ${confidencePct}%`);
+    console.log(`  Category: ${result.category}, Confidence: ${confidencePct}%`);
     if (!pass) allPass = false;
   }
 
@@ -47,26 +47,24 @@ async function runTests() {
   }
   console.log('✅ PASS: All confidence scores >= 90%');
 
-  // Test 3: Skill Matcher (OpenClaw/ClawHub)
-  console.log('\n[TEST 3] Skill Matcher - OpenClaw/ClawHub Structure');
+  // Test 3: Skill Matcher (Global Skills → ClawHub)
+  console.log('\n[TEST 3] Skill Matcher - Global Skills → ClawHub Structure');
   const matcher = new SkillMatcher();
-  
-  // Test OpenClaw registry
-  const openclawSkill = matcher.openclawRegistry['openclaw/writer'];
-  if (!openclawSkill) {
-    console.error('❌ FAIL: OpenClaw registry not found');
-    process.exit(1);
-  }
-  console.log('✅ OpenClaw registry initialized');
 
-  // Test ClawHub registry
-  const clawhubSkill = matcher.clawhubRegistry['clawrouter/writer'];
-  if (!clawhubSkill) {
-    console.error('❌ FAIL: ClawHub registry not found');
+  // Test skill registry is a Map (dynamic discovery)
+  if (!(matcher.skillRegistry instanceof Map)) {
+    console.error('❌ FAIL: Skill registry not initialized as Map');
     process.exit(1);
   }
-  console.log('✅ ClawHub registry initialized');
-  
+  console.log('✅ Skill registry initialized (dynamic discovery mode)');
+
+  // Test ClawHub registry is a Map
+  if (!(matcher.clawhubRegistry instanceof Map)) {
+    console.error('❌ FAIL: ClawHub registry not initialized as Map');
+    process.exit(1);
+  }
+  console.log('✅ ClawHub registry initialized (search mode)');
+
   // Test skill categories
   if (!matcher.skillCategories.creative || !matcher.skillCategories.coding) {
     console.error('❌ FAIL: Skill categories not initialized');
@@ -74,15 +72,23 @@ async function runTests() {
   }
   console.log('✅ Skill categories initialized');
 
-  // Test getSkillMetadata
-  const metadata = matcher.getSkillMetadata('openclaw/writer');
-  if (metadata.source !== 'openclaw') {
+  // Test getSkillMetadata (now supports dynamic sources)
+  const metadata = matcher.getSkillMetadata('test-skill');
+  if (!metadata.source) {
     console.error('❌ FAIL: getSkillMetadata failed');
     process.exit(1);
   }
   console.log('✅ getSkillMetadata works correctly');
 
-  console.log('\n[TEST 4] Module Exports');
+  // Test 4: Skill Similarity Map
+  console.log('\n[TEST 4] Skill Similarity Matching');
+  if (!matcher.skillSimilarityMap.writer || !matcher.skillSimilarityMap.coder) {
+    console.error('❌ FAIL: Skill similarity map not initialized');
+    process.exit(1);
+  }
+  console.log('✅ Skill similarity map initialized');
+
+  console.log('\n[TEST 5] Module Exports');
   const index = require('../index');
   if (typeof index.analyze !== 'function') {
     console.error('❌ FAIL: analyze not exported');

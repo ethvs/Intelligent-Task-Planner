@@ -402,7 +402,7 @@
       "description": "品牌起名"
     }
   },
-  "defaultSkills": ["clawrouter", "exec", "read", "write"],
+  "defaultSkills": ["dynamic-discovery", "exec", "read", "write"],
   "skillSources": ["clawhub", "github"],
   "confidenceThreshold": 0.3
 }

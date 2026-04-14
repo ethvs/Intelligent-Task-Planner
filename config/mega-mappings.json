@@ -210,7 +210,7 @@
       "qualityGates": ["风险匹配", "配置合理"]
     }
   },
-  "defaultSkills": ["clawrouter", "exec", "read", "write"],
+  "defaultSkills": ["dynamic-discovery", "exec", "read", "write"],
   "skillSources": ["clawhub", "github"],
   "confidenceThreshold": 0.25
 }

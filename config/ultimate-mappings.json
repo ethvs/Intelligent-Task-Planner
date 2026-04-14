@@ -38,8 +38,8 @@
         "网文作家"
       ],
       "skills": [
-        "clawrouter/writer",
-        "openclaw/storyteller",
+        "writer",
+        "writer",
         "creative-writer"
       ],
       "tools": [
@@ -4808,7 +4808,7 @@
     }
   },
   "defaultSkills": [
-    "clawrouter",
+    "dynamic-discovery",
     "exec",
     "read",
     "write"

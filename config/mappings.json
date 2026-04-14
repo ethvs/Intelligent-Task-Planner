@@ -2,7 +2,7 @@
   "taskCategories": {
     "creative_writing": {
       "keywords": ["写", "创作", "小说", "故事", "诗歌", "剧本", "文章", "文学", "作家", "写一部", "写一个", "科幻", "短篇", "长篇"],
-      "skills": ["clawrouter/writer", "openclaw/storyteller", "creative-writer"],
+      "skills": ["writer", "writer", "creative-writer"],
       "tools": ["feishu_create_doc", "write"],
       "description": "创作类任务：小说、故事、文章等"
     },
@@ -61,7 +61,9 @@
       "description": "网络搜索任务"
     }
   },
-  "defaultSkills": ["clawrouter", "exec", "read", "write"],
+  "defaultSkills": ["exec", "read", "write"],
+"skillDiscovery": "dynamic",
+"skillPriority": ["best_match", "high_relevance", "similar_function", "fallback"]
   "skillSources": ["clawhub", "github"],
   "confidenceThreshold": 0.4
 }
