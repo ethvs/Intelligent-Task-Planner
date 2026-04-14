@@ -7,6 +7,19 @@ description: |
 author: ethvs
 license: MIT
 repository: https://github.com/ethvs/Intelligent-Task-Planner
+homepage: https://github.com/ethvs/Intelligent-Task-Planner#readme
+bugs: https://github.com/ethvs/Intelligent-Task-Planner/issues
+
+# ClawHub 发布信息
+clawhub:
+  namespace: ethvs
+  name: intelligent-task-planner
+  display_name: "Intelligent Task Planner"
+  short_description: "智能任务规划器 - 自动识别意图并调度技能执行"
+  icon: 🤖
+  color: "#4A90D9"
+  pricing: free
+  visibility: public
 
 # 技能分类
 category: automation
@@ -16,6 +29,7 @@ tags:
   - skill-orchestrator
   - automation
   - ai-assistant
+  - openclaw-compatible
 
 # 入口配置
 entry:
@@ -24,12 +38,43 @@ entry:
 
 # 导出接口
 exports:
-  - analyze
-  - recognize
-  - getSupportedTasks
-  - getTaskDetails
-  - validateConfig
-  - batchAnalyze
+  - name: analyze
+    description: 完整分析并执行用户任务
+    params:
+      - name: userInput
+        type: string
+        required: true
+      - name: context
+        type: object
+        required: false
+    returns: object
+  - name: recognize
+    description: 快速意图识别
+    params:
+      - name: userInput
+        type: string
+        required: true
+    returns: object
+  - name: getSupportedTasks
+    description: 获取所有支持的任务类型
+    returns: array
+  - name: getTaskDetails
+    description: 获取任务详情
+    params:
+      - name: taskType
+        type: string
+        required: true
+    returns: object
+  - name: validateConfig
+    description: 验证系统配置
+    returns: object
+  - name: batchAnalyze
+    description: 批量分析多个任务
+    params:
+      - name: inputs
+        type: array
+        required: true
+    returns: array
 
 # 技能依赖
 dependencies:
@@ -114,7 +159,16 @@ force_mode:
     on_plan_fail: "stop"            # 规划失败时停止
 ---
 
+<!-- CLAWHUB-BADGES-START -->
+[![Version](https://img.shields.io/badge/version-6.0.0--final-blue.svg)](https://github.com/ethvs/Intelligent-Task-Planner)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/ethvs/Intelligent-Task-Planner/blob/main/LICENSE)
+[![Tasks](https://img.shields.io/badge/任务类型-152种-orange.svg)](https://github.com/ethvs/Intelligent-Task-Planner)
+[![Confidence](https://img.shields.io/badge/识别率-99.1%25-brightgreen.svg)](https://github.com/ethvs/Intelligent-Task-Planner)
+<!-- CLAWHUB-BADGES-END -->
+
 # Intelligent Task Planner v6.0.0-final
+
+> **ClawHub 技能 ID**: `ethvs/intelligent-task-planner`
 
 **智能任务规划器** - 高度自主的AI任务自动化引擎
 
@@ -341,6 +395,70 @@ const intent = recognize('分析一下销售数据');
 | `src/skill-matcher.js` | OpenClaw/ClawHub技能匹配器 |
 | `src/executor.js` | 任务执行与质量验证引擎 |
 | `config/ultimate-mappings.json` | 终极任务-技能映射配置 |
+
+---
+
+## ClawHub 安装与配置
+
+### 安装
+
+```bash
+# 通过 ClawHub CLI 安装
+clawhub install ethvs/intelligent-task-planner
+
+# 或通过 OpenClaw CLI 安装
+openclaw skill install ethvs/intelligent-task-planner
+```
+
+### Agent 配置（强制触发模式）
+
+在 Agent 的 `agents.md` 文件中添加以下配置，确保 ITP 技能被强制触发：
+
+```yaml
+# agent.yaml 或 agents.md
+name: your-agent-name
+
+skills:
+  - ethvs/intelligent-task-planner  # 必须放在第一个，确保最高优先级
+  # 执行技能由 ITP 动态发现，无需手动列出
+
+system_prompt: |
+  你是由 Intelligent Task Planner (ITP) 驱动的智能 Agent。
+  
+  ## 核心规则 (必须遵守):
+  1. 所有用户输入必须先通过 ITP 进行意图分析和任务规划
+  2. 未经 ITP 规划的任务不得直接执行
+  3. 严格按照 ITP 返回的 skill_chain 顺序调用技能
+
+# 触发配置（强制 ITP 优先）
+intent:
+  default_skill: ethvs/intelligent-task-planner
+  priority:
+    ethvs/intelligent-task-planner: 1000  # 最高优先级
+  exclusive_mode: true                      # 独占模式
+  intercept_all: true                      # 拦截所有输入
+
+triggers:
+  - skill: ethvs/intelligent-task-planner
+    patterns: [".*"]
+    min_confidence: 0.85
+
+execution:
+  follow_plan: true
+  allow_skip_planning: false
+  enforce_skill_chain: true
+```
+
+### 验证安装
+
+```bash
+# 验证配置
+openclaw agent validate
+
+# 测试触发
+openclaw agent test --agent your-agent-name --input "帮我写一部玄幻小说"
+# 预期输出: 显示 ITP 分析和技能调用流程
+```
 
 ---
 
